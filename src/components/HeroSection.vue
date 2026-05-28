@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div class="relative min-h-[460px] lg:min-h-[590px]">
-        <div class="absolute right-0 top-8 hidden rounded-card bg-white p-5 shadow-xl lg:block">
+        <div class="hero-stack-card absolute right-32 top-4 z-20 hidden rounded-card bg-white p-5 shadow-xl lg:block">
           <p class="text-sm font-extrabold text-[#687572]">Primary Stack</p>
           <p class="mt-1 text-xl font-black text-ink">Laravel + Vue.js</p>
         </div>
