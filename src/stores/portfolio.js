@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import api from '../services/api';
+import api, { hasConfiguredApi } from '../services/api';
 import { fallbackData } from '../data';
 
 const jsonSettingKeys = [
@@ -91,6 +91,17 @@ export const usePortfolioStore = defineStore('portfolio', {
     async load() {
       this.loading = true;
       this.loadError = '';
+
+      if (!hasConfiguredApi) {
+        this.profile = fallbackData.profile;
+        this.skills = fallbackData.skills;
+        this.services = fallbackData.services;
+        this.projects = fallbackData.projects;
+        this.testimonials = fallbackData.testimonials;
+        this.settings = fallbackData.settings;
+        this.loading = false;
+        return;
+      }
 
       try {
         const [profile, skills, services, projects, testimonials, settings] = await Promise.all([
