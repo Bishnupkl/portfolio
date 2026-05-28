@@ -8,12 +8,6 @@ Live site:
 https://bishnupkl.github.io/portfolio/
 ```
 
-Live API base:
-
-```text
-https://baldevsir.com/new/api
-```
-
 ## Stack
 
 - Vue 3
@@ -46,10 +40,10 @@ For local Laravel API development, use:
 VITE_API_BASE_URL=http://localhost:8000/api
 ```
 
-For live API testing, use:
+For live API testing, use your deployed Laravel API base URL:
 
 ```env
-VITE_API_BASE_URL=https://baldevsir.com/new/api
+VITE_API_BASE_URL=https://your-api-domain.com/api
 ```
 
 Run the frontend:
@@ -81,7 +75,7 @@ npm run preview
 GitHub Pages build uses the `/portfolio/` base path automatically when `GITHUB_PAGES=true`:
 
 ```bash
-GITHUB_PAGES=true VITE_API_BASE_URL=https://baldevsir.com/new/api npm run build
+GITHUB_PAGES=true VITE_API_BASE_URL=https://your-api-domain.com/api npm run build
 ```
 
 ## API And Fallback Data
@@ -136,7 +130,7 @@ php artisan config:cache
 Verify CORS:
 
 ```bash
-curl -I -H "Origin: https://bishnupkl.github.io" https://baldevsir.com/new/api/profile
+curl -I -H "Origin: https://bishnupkl.github.io" https://your-api-domain.com/api/profile
 ```
 
 The response should include:
@@ -181,7 +175,7 @@ Publish directory: dist
 Set environment variable:
 
 ```env
-VITE_API_BASE_URL=https://baldevsir.com/new/api
+VITE_API_BASE_URL=https://your-api-domain.com/api
 ```
 
 ## Useful Files
