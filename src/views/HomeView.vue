@@ -9,6 +9,7 @@ import HeroSection from '../components/HeroSection.vue';
 import Navbar from '../components/Navbar.vue';
 import ProcessSection from '../components/ProcessSection.vue';
 import ProjectsSection from '../components/ProjectsSection.vue';
+import ScrollTopButton from '../components/ScrollTopButton.vue';
 import ServicesSection from '../components/ServicesSection.vue';
 import SiteFooter from '../components/SiteFooter.vue';
 import SkillsSection from '../components/SkillsSection.vue';
@@ -75,5 +76,6 @@ watch(isDark, (value) => {
       <ContactSection v-reveal :profile="profile" />
     </template>
     <SiteFooter :settings="settings" />
+    <ScrollTopButton />
   </div>
 </template>

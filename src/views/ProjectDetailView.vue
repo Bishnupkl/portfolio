@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-vue-next';
 import Navbar from '../components/Navbar.vue';
+import ScrollTopButton from '../components/ScrollTopButton.vue';
 import SiteFooter from '../components/SiteFooter.vue';
 import { usePortfolioStore } from '../stores/portfolio';
 
@@ -94,5 +95,6 @@ const projectInitials = computed(() => (project.value?.title || '')
     </main>
 
     <SiteFooter :settings="settings" />
+    <ScrollTopButton />
   </div>
 </template>
