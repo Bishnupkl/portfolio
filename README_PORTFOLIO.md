@@ -1,23 +1,23 @@
-# Portfolio Frontend
+# Portfolio Frontend Notes
 
-Vue 3 + Vite frontend for the dynamic portfolio.
+The main setup and deployment documentation is in `README.md`.
 
-## Local Setup
+Quick commands:
 
 ```bash
 npm install
 npm run dev
+npm run build
 ```
 
-Environment:
+Local API:
 
 ```env
 VITE_API_BASE_URL=http://localhost:8000/api
 ```
 
-Deploy to Netlify with:
+Live API:
 
-```text
-Build command: npm run build
-Publish directory: dist
+```env
+VITE_API_BASE_URL=https://baldevsir.com/new/api
 ```
