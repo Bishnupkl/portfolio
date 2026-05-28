@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
           <a class="hero-secondary-btn inline-flex min-h-[46px] items-center justify-center rounded-full border border-[#dfeaea] bg-white px-7 font-extrabold text-ink transition hover:border-accent hover:text-accent" href="#projects">View Work</a>
         </div>
       </div>
-      <div class="relative min-h-[460px] lg:min-h-[590px]">
+      <div class="relative hidden min-h-[460px] lg:block lg:min-h-[590px]">
         <div class="hero-stack-card absolute right-32 top-4 z-20 hidden rounded-card bg-white p-5 shadow-xl lg:block">
           <p class="text-sm font-extrabold text-[#687572]">Primary Stack</p>
           <p class="mt-1 text-xl font-black text-ink">Laravel + Vue.js</p>
