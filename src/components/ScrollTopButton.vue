@@ -26,7 +26,7 @@ onBeforeUnmount(() => {
   <Transition name="scroll-top">
     <button
       v-if="visible"
-      class="fixed bottom-6 right-6 z-50 grid h-12 w-12 place-items-center rounded-full bg-accent text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#eb3440] focus:outline-none focus:ring-4 focus:ring-accent/25"
+      class="fixed bottom-6 left-6 z-50 grid h-12 w-12 place-items-center rounded-full bg-accent text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#eb3440] focus:outline-none focus:ring-4 focus:ring-accent/25"
       title="Go to top"
       type="button"
       @click="scrollToTop"
