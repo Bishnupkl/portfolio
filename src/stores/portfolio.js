@@ -109,7 +109,7 @@ export const usePortfolioStore = defineStore('portfolio', {
         this.testimonials = mergeListWithFallback(testimonials.data || [], fallbackData.testimonials, 'client_name');
         this.settings = { ...fallbackData.settings, ...parseSettings(settings.data || {}) };
       } catch {
-        this.loadError = 'Portfolio API is not available.';
+        this.loadError = '';
         this.profile = fallbackData.profile;
         this.skills = fallbackData.skills;
         this.services = fallbackData.services;

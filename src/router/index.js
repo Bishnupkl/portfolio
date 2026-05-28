@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import ProjectDetailView from '../views/ProjectDetailView.vue';
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'home', component: HomeView },
     { path: '/projects/:slug', name: 'projects.show', component: ProjectDetailView, props: true },

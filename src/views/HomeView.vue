@@ -18,7 +18,7 @@ import TimelineSection from '../components/TimelineSection.vue';
 import { usePortfolioStore } from '../stores/portfolio';
 
 const store = usePortfolioStore();
-const { profile, skills, services, projects, testimonials, settings, loading, loadError } = storeToRefs(store);
+const { profile, skills, services, projects, testimonials, settings, loading } = storeToRefs(store);
 const isDark = ref(false);
 const hasContent = computed(() => Boolean(profile.value?.full_name));
 
@@ -45,16 +45,13 @@ watch(isDark, (value) => {
         <h1 class="text-4xl font-black text-ink">Loading portfolio from API...</h1>
       </div>
     </main>
-    <main v-else-if="loadError || !hasContent" class="grid min-h-screen place-items-center bg-mist px-5 pt-28 text-center">
+    <main v-else-if="!hasContent" class="grid min-h-screen place-items-center bg-mist px-5 pt-28 text-center">
       <div class="max-w-2xl rounded-card bg-white p-8 shadow-sm">
-        <p class="section-kicker mb-3">API Required</p>
-        <h1 class="mb-4 text-4xl font-black text-ink">Portfolio API is not returning content</h1>
+        <p class="section-kicker mb-3">Content unavailable</p>
+        <h1 class="mb-4 text-4xl font-black text-ink">Portfolio content could not be loaded</h1>
         <p class="mb-6 leading-8 text-[#3f4c49]">
-          Start the Laravel backend, run migrations and seeders, then refresh this page.
+          Please refresh the page or check the frontend data source.
         </p>
-        <pre class="overflow-auto rounded-card bg-ink p-5 text-left text-sm text-white">cd /var/www/html/projects/portfolio/portfolio-backend
-php artisan migrate --seed
-php artisan serve --host=127.0.0.1 --port=8010</pre>
       </div>
     </main>
     <template v-else>
