@@ -19,6 +19,15 @@ function clearMessages() {
   refreshMessages();
 }
 
+function deleteMessage(messageId) {
+  if (!window.confirm('Delete this message?')) {
+    return;
+  }
+
+  messages.value = messages.value.filter((message) => message.id !== messageId);
+  window.localStorage.setItem(messageStorageKey, JSON.stringify(messages.value));
+}
+
 function downloadJson() {
   const blob = new Blob([jsonOutput.value], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -58,7 +67,17 @@ function downloadJson() {
               <h2 class="text-2xl font-black">{{ message.name }}</h2>
               <a class="font-bold text-accent" :href="`mailto:${message.email}`">{{ message.email }}</a>
             </div>
-            <time class="text-sm font-bold text-[#687572]">{{ new Date(message.created_at).toLocaleString() }}</time>
+            <div class="flex items-center gap-3">
+              <time class="text-sm font-bold text-[#687572]">{{ new Date(message.created_at).toLocaleString() }}</time>
+              <button
+                class="grid h-10 w-10 place-items-center rounded-full border border-[#dfeaea] bg-white text-ink transition hover:border-accent hover:text-accent"
+                title="Delete message"
+                type="button"
+                @click="deleteMessage(message.id)"
+              >
+                <Trash2 :size="17" />
+              </button>
+            </div>
           </div>
           <p v-if="message.subject" class="mb-3 font-black">{{ message.subject }}</p>
           <p class="whitespace-pre-wrap leading-8 text-[#3f4c49]">{{ message.message }}</p>
