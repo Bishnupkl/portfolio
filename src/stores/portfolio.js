@@ -77,6 +77,19 @@ function mergeListWithFallback(apiItems = [], fallbackItems = [], fallbackKey, o
   return [...mergedItems, ...missingFallbackItems];
 }
 
+function mergeProfileWithFallback(apiProfile = {}) {
+  return {
+    ...fallbackData.profile,
+    ...apiProfile,
+    hero_image: fallbackData.profile.hero_image,
+    profile_image: fallbackData.profile.profile_image,
+    cv_file: fallbackData.profile.cv_file,
+    hero_image_url: fallbackData.profile.hero_image_url,
+    profile_image_url: fallbackData.profile.profile_image_url,
+    cv_url: fallbackData.profile.cv_url,
+  };
+}
+
 function savedMessages() {
   if (typeof window === 'undefined') {
     return [];
@@ -142,7 +155,7 @@ export const usePortfolioStore = defineStore('portfolio', {
           api.get('/settings'),
         ]);
 
-        this.profile = profile.data || fallbackData.profile;
+        this.profile = profile.data ? mergeProfileWithFallback(profile.data) : fallbackData.profile;
         this.skills = skills.data?.length ? skills.data : fallbackData.skills;
         this.services = services.data?.length ? services.data : fallbackData.services;
         this.projects = mergeListWithFallback(projects.data || [], fallbackData.projects, 'slug', { preferProjectFallbackImage: true });
