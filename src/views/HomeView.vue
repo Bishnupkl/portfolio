@@ -19,7 +19,7 @@ import TimelineSection from '../components/TimelineSection.vue';
 import { usePortfolioStore } from '../stores/portfolio';
 
 const store = usePortfolioStore();
-const { profile, skills, services, projects, testimonials, settings, loading } = storeToRefs(store);
+const { profile, skills, services, projects, testimonials, settings } = storeToRefs(store);
 const isDark = ref(false);
 const hasContent = computed(() => Boolean(profile.value?.full_name));
 
@@ -40,13 +40,7 @@ watch(isDark, (value) => {
 <template>
   <div :class="{ dark: isDark }">
     <Navbar :is-dark="isDark" :logo="settings.site_logo" @toggle-theme="toggleTheme" />
-    <main v-if="loading" class="grid min-h-screen place-items-center bg-mist px-5 pt-28 text-center">
-      <div>
-        <p class="section-kicker mb-3">Loading</p>
-        <h1 class="text-4xl font-black text-ink">Loading portfolio from API...</h1>
-      </div>
-    </main>
-    <main v-else-if="!hasContent" class="grid min-h-screen place-items-center bg-mist px-5 pt-28 text-center">
+    <main v-if="!hasContent" class="grid min-h-screen place-items-center bg-mist px-5 pt-28 text-center">
       <div class="max-w-2xl rounded-card bg-white p-8 shadow-sm">
         <p class="section-kicker mb-3">Content unavailable</p>
         <h1 class="mb-4 text-4xl font-black text-ink">Portfolio content could not be loaded</h1>
