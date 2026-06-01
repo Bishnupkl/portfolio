@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import api, { hasConfiguredApi } from '../services/api';
 import { fallbackData } from '../data';
 
+const messageStorageKey = 'portfolio_contact_messages';
+
 const jsonSettingKeys = [
   'brand_companies',
   'experience_companies',
@@ -75,6 +77,33 @@ function mergeListWithFallback(apiItems = [], fallbackItems = [], fallbackKey, o
   return [...mergedItems, ...missingFallbackItems];
 }
 
+function savedMessages() {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  try {
+    return JSON.parse(window.localStorage.getItem(messageStorageKey) || '[]');
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalMessage(payload) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const messages = savedMessages();
+  messages.unshift({
+    ...payload,
+    id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+    created_at: new Date().toISOString(),
+    source: 'frontend-local',
+  });
+  window.localStorage.setItem(messageStorageKey, JSON.stringify(messages));
+}
+
 export const usePortfolioStore = defineStore('portfolio', {
   state: () => ({
     profile: fallbackData.profile,
@@ -133,8 +162,21 @@ export const usePortfolioStore = defineStore('portfolio', {
     },
     async sendMessage(payload) {
       this.contactStatus = '';
-      await api.post('/contact', payload);
-      this.contactStatus = 'Message sent successfully.';
+      if (!hasConfiguredApi) {
+        saveLocalMessage(payload);
+        this.contactStatus = 'Message saved locally.';
+        return;
+      }
+
+      try {
+        await api.post('/contact', payload);
+        this.contactStatus = 'Message sent successfully.';
+      } catch {
+        saveLocalMessage(payload);
+        this.contactStatus = 'Message saved locally.';
+      }
     },
   },
 });
+
+export { messageStorageKey, savedMessages };

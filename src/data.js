@@ -61,7 +61,7 @@ export const fallbackData = {
     },
   ],
   settings: {
-    site_logo: 'B.',
+    site_logo: '20nu',
     footer_text: 'Bishnu Pokhrel - Senior Web Developer specialized in Laravel, PHP, Vue.js, and Java.',
     seo_title: 'Bishnu Pokhrel | Senior Web Developer',
     seo_description: 'Portfolio of Bishnu Pokhrel, a senior web developer specializing in Laravel, PHP, Vue.js, Java, ecommerce, education, health, social media, and fintech solutions.',
